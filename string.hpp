@@ -43,9 +43,9 @@ class String
         data_[size_] = '\0';
     }
 
-    String(const char* begin, const char* end) : size_(end - begin), capacity_(end - begin), data_(new char[capacity_ + 1])
+    String(const char* c, size_t n) : size_(n), capacity_(n), data_(new char[capacity_ + 1])
     {
-        std::copy(begin, end, data_);
+        std::copy(c, c + size_, data_);
         data_[size_] = '\0';
     }
 
@@ -216,9 +216,8 @@ class String
     String Substr(size_t start, size_t count) const
     {
         size_t real_start = std::min(start, size_);
-        size_t real_len = std::min(count, size_ - start);
-
-        return String(data_ + real_start, data_ + real_start + real_len);
+        size_t real_len = std::min(count, size_ - real_start);
+        return String(data_ + real_start, real_len);
     }
 
     bool Empty() const
