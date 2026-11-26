@@ -213,7 +213,6 @@ class String
         return size_;
     }
 
-
     String Substr(size_t start, size_t count) const
     {
         size_t real_start = std::min(start, size_);
